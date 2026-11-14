@@ -3,8 +3,8 @@
 **konnek** connects the tools small and medium-sized businesses in Europe already use -- simple to
 set up, hosted GDPR-compliant in Germany, with AI built in. Learn more at <https://konnek.de>.
 
-This repository is the landing page of our open source space, published with GitHub Pages at
-**<https://konnekde.github.io>**.
+This repository is the landing page of our open source space, published with GitHub Pages and served at **<https://konnek.tech>**
+(also reachable at <https://konnekde.github.io>).
 
 ## Mission
 
@@ -19,7 +19,8 @@ While building konnek we create things that are useful beyond our own product. W
 
 ## Development
 
-The site is a single static `index.html` (no build step; `.nojekyll` disables Jekyll).
+The site is static HTML: `index.html`, `impressum.html` (legal notice, same as konnek.de) and the
+shared `style.css` (no build step; `.nojekyll` disables Jekyll).
 Open it in a browser to preview; every push to `main` publishes it.
 
 Styling follows the konnek website (Indigo `#2e3a8c` + Coral `#ff7a59`, light theme).

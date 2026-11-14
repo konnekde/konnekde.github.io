@@ -1,0 +1,190 @@
+/* Design tokens mirror konnek-website/src/styles/variables.css (Indigo + Coral). */
+@font-face { font-family: 'Space Grotesk'; font-weight: 300; font-display: swap; src: url(fonts/space-grotesk-latin-300-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 400; font-display: swap; src: url(fonts/space-grotesk-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Outfit'; font-weight: 400; font-display: swap; src: url(fonts/outfit-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Outfit'; font-weight: 500; font-display: swap; src: url(fonts/outfit-latin-500-normal.woff2) format('woff2'); }
+
+:root {
+  --color-primary: #2e3a8c;
+  --color-primary-hover: #1a2566;
+  --color-secondary: #ff7a59;
+  --color-hero-bg: #1e2b6e;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f2f4fa;
+  --color-text: #1b1b1b;
+  --color-text-muted: #555555;
+  --color-border: #e0e0e0;
+  --color-coral-tint: rgba(255, 122, 89, 0.08);
+  --color-on-dark-muted: rgba(255, 255, 255, 0.85);
+  --shadow-primary-soft: 0 0.25rem 1.5rem rgba(46, 58, 140, 0.1);
+  --shadow-primary-medium: 0 0.375rem 1.5rem rgba(46, 58, 140, 0.12);
+  --shadow-cta: 0 0.375rem 1.125rem rgba(46, 58, 140, 0.28);
+  --focus-shadow: 0 0 0 0.15rem rgba(46, 58, 140, 0.25);
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --max-width: 70rem;
+  --nav-height: 4.5rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.4rem;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(46, 58, 140, 0.2); }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: none; box-shadow: var(--focus-shadow); border-radius: var(--radius-md); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 300; line-height: 1.2; color: var(--color-text); text-wrap: balance; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+h3 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
+p { max-width: 65ch; text-wrap: pretty; }
+
+.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-lg); }
+@media (max-width: 40rem) { .container { padding: 0 var(--space-md); } }
+.section { padding: var(--space-2xl) 0; }
+.section-alt { background: var(--color-bg-alt); }
+
+/* Wordmark in running text: Space Grotesk 400 with the coral line, as on konnek.de */
+.brand {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-decoration: underline var(--color-secondary);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+  text-decoration-skip-ink: none;
+  white-space: nowrap;
+}
+
+/* Nav */
+.nav { height: var(--nav-height); background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+.nav .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+.logo { display: inline-flex; align-items: baseline; gap: 0.6rem; color: var(--color-text); }
+.logo:hover { text-decoration: none; opacity: 0.85; }
+.logo svg { display: block; }
+.logo-tag { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-muted); }
+.nav-links { display: flex; gap: var(--space-lg); font-weight: 500; }
+.nav-links a { color: var(--color-text); }
+@media (max-width: 40rem) { .logo-tag, .nav-links .hide-sm { display: none; } }
+
+/* Hero: dark indigo backdrop with the faint dot texture */
+.hero {
+  background-color: var(--color-hero-bg);
+  background-image: radial-gradient(color-mix(in srgb, #fff 14%, transparent) 0.0625rem, transparent 0.0625rem);
+  background-size: 1rem 1rem;
+  color: #fff;
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+.hero h1 { color: #fff; max-width: 22ch; margin: var(--space-md) auto 0; }
+.hero .section-label { margin-bottom: 0; }
+.hero-subtitle { font-size: 1.15rem; color: var(--color-on-dark-muted); line-height: 1.7; max-width: 38rem; margin: var(--space-md) auto 0; }
+.hero-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; margin-top: var(--space-lg); }
+
+/* Section header */
+.section-label { display: block; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: var(--space-sm); }
+.section-text { font-size: 1.1rem; color: var(--color-text-muted); line-height: 1.8; max-width: 60ch; margin-top: var(--space-md); }
+.section-header { margin-bottom: var(--space-xl); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  padding: 0.75rem 1.75rem; border: none; border-radius: var(--radius-md);
+  font: 500 1rem var(--font-body); cursor: pointer; text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-cta); }
+.btn-secondary { background: transparent; color: var(--color-primary); border: 0.125rem solid var(--color-primary); }
+.btn-secondary:hover { background: var(--color-primary); color: #fff; }
+.btn-coral { background: var(--color-secondary); color: #fff; }
+.btn-coral:hover { background: #f2643f; transform: translateY(-1px); }
+.btn-on-dark { background: transparent; color: #fff; border: 0.125rem solid rgba(255, 255, 255, 0.6); }
+.btn-on-dark:hover { background: rgba(255, 255, 255, 0.08); border-color: #fff; }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--space-md); }
+.card {
+  padding: var(--space-lg);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.card:hover { border-color: var(--color-secondary); box-shadow: var(--shadow-primary-medium); transform: translateY(-2px); }
+.card-num { font-family: var(--font-heading); font-size: 0.875rem; color: var(--color-secondary); letter-spacing: 0.1em; }
+.card h3 { margin: var(--space-sm) 0; }
+.card p { color: var(--color-text-muted); }
+@media (prefers-reduced-motion: reduce) { .card, .btn { transition: none; } .card:hover, .btn:hover { transform: none; } }
+
+/* Values: editorial rows with coral-tint hover */
+.values { list-style: none; border-top: 1px solid var(--color-border); }
+.values li {
+  display: grid; grid-template-columns: 12rem 1fr; gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md); border-bottom: 1px solid var(--color-border);
+  transition: background 0.2s;
+}
+.values li:hover { background: var(--color-coral-tint); }
+.values strong { font-family: var(--font-heading); font-weight: 400; font-size: 1.25rem; color: var(--color-primary); }
+.values span { color: var(--color-text-muted); }
+@media (max-width: 40rem) { .values li { grid-template-columns: 1fr; gap: var(--space-sm); } }
+
+/* CTA on a dot band */
+.dot-band {
+  padding: var(--space-2xl) 0;
+  border-top: 0.0625rem solid var(--color-primary);
+  background-image: radial-gradient(color-mix(in srgb, var(--color-primary) 22%, transparent) 0.0625rem, transparent 0.0625rem);
+  background-size: 1rem 1rem;
+}
+.dot-band-card { background: var(--color-bg); padding: var(--space-xl); border-radius: var(--radius-lg); box-shadow: var(--shadow-primary-soft); max-width: 44rem; margin: 0 auto; text-align: center; }
+.dot-band-card p { margin: var(--space-md) auto 0; color: var(--color-text-muted); }
+.dot-band-card .hero-actions { margin-top: var(--space-lg); }
+@media (max-width: 40rem) { .dot-band-card { padding: var(--space-lg); } }
+
+/* Open source credits */
+.credits { padding-top: var(--space-xl); }
+.credits-table { width: 100%; border-collapse: collapse; margin-top: var(--space-lg); font-size: 0.95rem; }
+.credits-table th { text-align: left; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); padding: var(--space-sm) var(--space-md) var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
+.credits-table td { padding: var(--space-md) var(--space-md) var(--space-md) 0; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+.font-sg { font-family: var(--font-heading); font-size: 1.15rem; }
+.font-outfit { font-family: var(--font-body); font-size: 1.15rem; font-weight: 500; }
+@media (max-width: 40rem) {
+  .credits-table thead { display: none; }
+  .credits-table tr { display: grid; grid-template-columns: 1fr; padding: var(--space-md) 0; border-bottom: 1px solid var(--color-border); }
+  .credits-table td { border: 0; padding: 0.15rem 0; }
+}
+
+/* Footer */
+.footer { background: var(--color-hero-bg); padding: var(--space-xl) 0; }
+.footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md); }
+.footer-links { display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+.footer-links a { font-size: 0.875rem; color: var(--color-on-dark-muted); }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 0.8rem; color: rgba(255, 255, 255, 0.65); }
+/* Same treatment as konnek-website's .footer-version */
+.footer-version { font-variant-numeric: tabular-nums; color: inherit; opacity: 0.5; margin-left: 0.35rem; font-family: ui-monospace, monospace; }
+.footer-version:hover { opacity: 1; color: #fff; }
+
+/* Legal pages (impressum.html) */
+.legal { padding: var(--space-2xl) 0; }
+.legal .container { max-width: 48rem; }
+.legal h1 { margin-bottom: var(--space-lg); }
+.legal h2 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: var(--space-lg) 0 var(--space-sm); }
+.legal p { color: var(--color-text-muted); margin-bottom: var(--space-sm); }
+.legal .lang-sep { margin: var(--space-2xl) 0 var(--space-lg); border: 0; border-top: 1px solid var(--color-border); }
+.legal .notice { font-size: 0.95rem; background: var(--color-bg-alt); padding: var(--space-md); border-radius: var(--radius-md); }
