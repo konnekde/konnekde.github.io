@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>konnek open source</title>
+  <meta name="description" content="konnek connects the tools small European businesses already use. Here we share integrations, tools and skills we build along the way.">
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --surface: #ffffff;
+      --text: #1d1f23;
+      --muted: #5c6370;
+      --accent: #0f6b5c;
+      --accent-soft: #e3f1ee;
+      --border: #e4e2dc;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121416;
+        --surface: #1a1d20;
+        --text: #e8e6e1;
+        --muted: #9aa1ab;
+        --accent: #5cc8b2;
+        --accent-soft: #1c2f2b;
+        --border: #2a2e33;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #121416;
+      --surface: #1a1d20;
+      --text: #e8e6e1;
+      --muted: #9aa1ab;
+      --accent: #5cc8b2;
+      --accent-soft: #1c2f2b;
+      --border: #2a2e33;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
+    header { padding: 72px 0 40px; }
+    .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--accent); }
+    h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.15; letter-spacing: -0.03em; margin: 24px 0 16px; }
+    .lead { font-size: 20px; color: var(--muted); max-width: 640px; margin: 0; }
+    h2 { font-size: 24px; letter-spacing: -0.02em; margin: 56px 0 16px; }
+    p { margin: 0 0 16px; }
+    a { color: var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 16px; }
+    ul.values { padding: 0; list-style: none; margin: 0; }
+    ul.values li { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    ul.values li:last-child { border-bottom: 0; }
+    ul.values strong { color: var(--text); }
+    .cta {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .note { background: var(--accent-soft); border-radius: 12px; padding: 20px; }
+    footer { border-top: 1px solid var(--border); margin-top: 64px; padding-top: 24px; color: var(--muted); font-size: 15px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo">konnek</div>
+      <h1>Connecting the tools your business already uses.</h1>
+      <p class="lead">
+        konnek makes integrations simple for small and medium-sized businesses in Europe:
+        set up in a few steps, hosted GDPR-compliant in Germany, with AI built in from day one.
+      </p>
+    </header>
+
+    <section>
+      <h2>Why this open source space exists</h2>
+      <p>
+        Building konnek, we keep creating things that are useful beyond our own product:
+        connectors, small tools, and skills for working with AI agents.
+        We want to share them openly instead of keeping them in a drawer.
+      </p>
+      <p>
+        This is where they live. Everything here is meant to help you connect with konnek
+        &ndash; or simply to solve a problem you happen to share with us.
+      </p>
+    </section>
+
+    <section>
+      <h2>What you will find here</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Integrations</h3>
+          <p>Connectors and examples for linking your software &ndash; especially European tools &ndash; with konnek.</p>
+        </div>
+        <div class="card">
+          <h3>Capabilities</h3>
+          <p>Building blocks and interfaces that let other systems talk to konnek.</p>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <p>Developer utilities we built for ourselves and found worth sharing.</p>
+        </div>
+        <div class="card">
+          <h3>Skills</h3>
+          <p>Reusable instructions and workflows for AI coding agents, refined during our own work.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What we stand for</h2>
+      <ul class="values">
+        <li><strong>Simple.</strong> Small, clear solutions that &ldquo;just run&rdquo; &ndash; no integration project needed.</li>
+        <li><strong>European.</strong> Data stays in Germany, and we actively connect European software alternatives.</li>
+        <li><strong>AI-native.</strong> Describe an integration in plain language and let konnek build it.</li>
+        <li><strong>Independent.</strong> Bootstrapped, without investor money, and growing towards shared ownership.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Join the journey</h2>
+      <div class="note">
+        <p>
+          This space is just getting started &ndash; the first repositories will appear here soon.
+          Follow along on GitHub, or learn more about the product on our website.
+        </p>
+        <a class="cta" href="https://github.com/konnekde">github.com/konnekde</a>
+        &nbsp;
+        <a href="https://konnek.de">konnek.de</a>
+      </div>
+    </section>
+
+    <footer>
+      konnek &middot; <a href="https://konnek.de">konnek.de</a> &middot; <a href="mailto:info@konnek.de">info@konnek.de</a>
+    </footer>
+  </main>
+</body>
+</html>
