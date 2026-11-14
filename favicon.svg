@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <text x="32" y="56" text-anchor="middle" font-family="'Space Grotesk',sans-serif"
+    font-weight="300" font-size="72" fill="#4338CA" letter-spacing="-2">k</text>
+  <line x1="2" y1="62" x2="62" y2="62"
+    stroke="#ff7a59" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+</svg>

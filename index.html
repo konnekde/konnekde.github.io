@@ -5,150 +5,336 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>konnek open source</title>
   <meta name="description" content="konnek connects the tools small European businesses already use. Here we share integrations, tools and skills we build along the way.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/space-grotesk-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    /* Design tokens mirror konnek-website/src/styles/variables.css (Indigo + Coral). */
+    @font-face { font-family: 'Space Grotesk'; font-weight: 300; font-display: swap; src: url(fonts/space-grotesk-latin-300-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-weight: 400; font-display: swap; src: url(fonts/space-grotesk-latin-400-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-weight: 400; font-display: swap; src: url(fonts/outfit-latin-400-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-weight: 500; font-display: swap; src: url(fonts/outfit-latin-500-normal.woff2) format('woff2'); }
+
     :root {
-      --bg: #fbfaf7;
-      --surface: #ffffff;
-      --text: #1d1f23;
-      --muted: #5c6370;
-      --accent: #0f6b5c;
-      --accent-soft: #e3f1ee;
-      --border: #e4e2dc;
+      --color-primary: #2e3a8c;
+      --color-primary-hover: #1a2566;
+      --color-secondary: #ff7a59;
+      --color-hero-bg: #1e2b6e;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f2f4fa;
+      --color-text: #1b1b1b;
+      --color-text-muted: #555555;
+      --color-border: #e0e0e0;
+      --color-coral-tint: rgba(255, 122, 89, 0.08);
+      --color-on-dark-muted: rgba(255, 255, 255, 0.85);
+      --shadow-primary-soft: 0 0.25rem 1.5rem rgba(46, 58, 140, 0.1);
+      --shadow-primary-medium: 0 0.375rem 1.5rem rgba(46, 58, 140, 0.12);
+      --shadow-cta: 0 0.375rem 1.125rem rgba(46, 58, 140, 0.28);
+      --focus-shadow: 0 0 0 0.15rem rgba(46, 58, 140, 0.25);
+      --font-heading: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 5rem;
+      --max-width: 70rem;
+      --nav-height: 4.5rem;
+      --radius-md: 0.25rem;
+      --radius-lg: 0.4rem;
     }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #121416;
-        --surface: #1a1d20;
-        --text: #e8e6e1;
-        --muted: #9aa1ab;
-        --accent: #5cc8b2;
-        --accent-soft: #1c2f2b;
-        --border: #2a2e33;
-      }
-    }
-    :root[data-theme="dark"] {
-      --bg: #121416;
-      --surface: #1a1d20;
-      --text: #e8e6e1;
-      --muted: #9aa1ab;
-      --accent: #5cc8b2;
-      --accent-soft: #1c2f2b;
-      --border: #2a2e33;
-    }
-    * { box-sizing: border-box; }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
-    header { padding: 72px 0 40px; }
-    .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--accent); }
-    h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.15; letter-spacing: -0.03em; margin: 24px 0 16px; }
-    .lead { font-size: 20px; color: var(--muted); max-width: 640px; margin: 0; }
-    h2 { font-size: 24px; letter-spacing: -0.02em; margin: 56px 0 16px; }
-    p { margin: 0 0 16px; }
-    a { color: var(--accent); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    ::selection { background: rgba(46, 58, 140, 0.2); }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: none; box-shadow: var(--focus-shadow); border-radius: var(--radius-md); }
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 300; line-height: 1.2; color: var(--color-text); text-wrap: balance; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+    h3 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
+    p { max-width: 65ch; text-wrap: pretty; }
+
+    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-lg); }
+    @media (max-width: 40rem) { .container { padding: 0 var(--space-md); } }
+    .section { padding: var(--space-2xl) 0; }
+    .section-alt { background: var(--color-bg-alt); }
+
+    /* Wordmark in running text: Space Grotesk 400 with the coral line, as on konnek.de */
+    .brand {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-decoration: underline var(--color-secondary);
+      text-decoration-thickness: 0.09em;
+      text-underline-offset: 0.2em;
+      text-decoration-skip-ink: none;
+      white-space: nowrap;
+    }
+
+    /* Nav */
+    .nav { height: var(--nav-height); background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+    .nav .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+    .logo { display: inline-flex; align-items: baseline; gap: 0.6rem; color: var(--color-text); }
+    .logo:hover { text-decoration: none; opacity: 0.85; }
+    .logo svg { display: block; }
+    .logo-tag { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-muted); }
+    .nav-links { display: flex; gap: var(--space-lg); font-weight: 500; }
+    .nav-links a { color: var(--color-text); }
+    @media (max-width: 40rem) { .logo-tag, .nav-links .hide-sm { display: none; } }
+
+    /* Hero: dark indigo backdrop with the faint dot texture */
+    .hero {
+      background-color: var(--color-hero-bg);
+      background-image: radial-gradient(color-mix(in srgb, #fff 14%, transparent) 0.0625rem, transparent 0.0625rem);
+      background-size: 1rem 1rem;
+      color: #fff;
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+    .hero h1 { color: #fff; max-width: 22ch; margin: var(--space-md) auto 0; }
+    .hero .section-label { margin-bottom: 0; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--color-on-dark-muted); line-height: 1.7; max-width: 38rem; margin: var(--space-md) auto 0; }
+    .hero-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; margin-top: var(--space-lg); }
+
+    /* Section header */
+    .section-label { display: block; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: var(--space-sm); }
+    .section-text { font-size: 1.1rem; color: var(--color-text-muted); line-height: 1.8; max-width: 60ch; margin-top: var(--space-md); }
+    .section-header { margin-bottom: var(--space-xl); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--space-sm);
+      padding: 0.75rem 1.75rem; border: none; border-radius: var(--radius-md);
+      font: 500 1rem var(--font-body); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { text-decoration: none; }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-cta); }
+    .btn-secondary { background: transparent; color: var(--color-primary); border: 0.125rem solid var(--color-primary); }
+    .btn-secondary:hover { background: var(--color-primary); color: #fff; }
+    .btn-coral { background: var(--color-secondary); color: #fff; }
+    .btn-coral:hover { background: #f2643f; transform: translateY(-1px); }
+    .btn-on-dark { background: transparent; color: #fff; border: 0.125rem solid rgba(255, 255, 255, 0.6); }
+    .btn-on-dark:hover { background: rgba(255, 255, 255, 0.08); border-color: #fff; }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--space-md); }
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      padding: var(--space-lg);
+      border: 0.0625rem solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); font-size: 16px; }
-    ul.values { padding: 0; list-style: none; margin: 0; }
-    ul.values li { padding: 10px 0; border-bottom: 1px solid var(--border); }
-    ul.values li:last-child { border-bottom: 0; }
-    ul.values strong { color: var(--text); }
-    .cta {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      background: var(--accent);
-      color: var(--bg);
-      text-decoration: none;
-      font-weight: 600;
+    .card:hover { border-color: var(--color-secondary); box-shadow: var(--shadow-primary-medium); transform: translateY(-2px); }
+    .card-num { font-family: var(--font-heading); font-size: 0.875rem; color: var(--color-secondary); letter-spacing: 0.1em; }
+    .card h3 { margin: var(--space-sm) 0; }
+    .card p { color: var(--color-text-muted); }
+    @media (prefers-reduced-motion: reduce) { .card, .btn { transition: none; } .card:hover, .btn:hover { transform: none; } }
+
+    /* Values: editorial rows with coral-tint hover */
+    .values { list-style: none; border-top: 1px solid var(--color-border); }
+    .values li {
+      display: grid; grid-template-columns: 12rem 1fr; gap: var(--space-md);
+      padding: var(--space-lg) var(--space-md); border-bottom: 1px solid var(--color-border);
+      transition: background 0.2s;
     }
-    .note { background: var(--accent-soft); border-radius: 12px; padding: 20px; }
-    footer { border-top: 1px solid var(--border); margin-top: 64px; padding-top: 24px; color: var(--muted); font-size: 15px; }
+    .values li:hover { background: var(--color-coral-tint); }
+    .values strong { font-family: var(--font-heading); font-weight: 400; font-size: 1.25rem; color: var(--color-primary); }
+    .values span { color: var(--color-text-muted); }
+    @media (max-width: 40rem) { .values li { grid-template-columns: 1fr; gap: var(--space-sm); } }
+
+    /* CTA on a dot band */
+    .dot-band {
+      padding: var(--space-2xl) 0;
+      border-top: 0.0625rem solid var(--color-primary);
+      background-image: radial-gradient(color-mix(in srgb, var(--color-primary) 22%, transparent) 0.0625rem, transparent 0.0625rem);
+      background-size: 1rem 1rem;
+    }
+    .dot-band-card { background: var(--color-bg); padding: var(--space-xl); border-radius: var(--radius-lg); box-shadow: var(--shadow-primary-soft); max-width: 44rem; margin: 0 auto; text-align: center; }
+    .dot-band-card p { margin: var(--space-md) auto 0; color: var(--color-text-muted); }
+    .dot-band-card .hero-actions { margin-top: var(--space-lg); }
+    @media (max-width: 40rem) { .dot-band-card { padding: var(--space-lg); } }
+
+    /* Open source credits */
+    .credits { padding-top: var(--space-xl); }
+    .credits-table { width: 100%; border-collapse: collapse; margin-top: var(--space-lg); font-size: 0.95rem; }
+    .credits-table th { text-align: left; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); padding: var(--space-sm) var(--space-md) var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
+    .credits-table td { padding: var(--space-md) var(--space-md) var(--space-md) 0; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+    .font-sg { font-family: var(--font-heading); font-size: 1.15rem; }
+    .font-outfit { font-family: var(--font-body); font-size: 1.15rem; font-weight: 500; }
+    @media (max-width: 40rem) {
+      .credits-table thead { display: none; }
+      .credits-table tr { display: grid; grid-template-columns: 1fr; padding: var(--space-md) 0; border-bottom: 1px solid var(--color-border); }
+      .credits-table td { border: 0; padding: 0.15rem 0; }
+    }
+
+    /* Footer */
+    .footer { background: var(--color-hero-bg); padding: var(--space-xl) 0; }
+    .footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md); }
+    .footer-links { display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+    .footer-links a { font-size: 0.875rem; color: var(--color-on-dark-muted); }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.8rem; color: rgba(255, 255, 255, 0.65); }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <div class="logo">konnek</div>
+  <nav class="nav" aria-label="Main">
+    <div class="container">
+      <a class="logo" href="./" aria-label="konnek open source">
+        <svg width="136" height="50" viewBox="0 0 136.432 49.88" aria-hidden="true">
+          <rect x="0" y="43.56" width="132.432" height="2" rx="1" fill="#ff7a59"></rect>
+          <text x="0" y="37.8" font-family="'Space Grotesk', sans-serif" font-weight="400" font-size="36" letter-spacing="1.2" fill="#1b1b1b">konnek</text>
+        </svg>
+        <span class="logo-tag">open source</span>
+      </a>
+      <div class="nav-links">
+        <a class="hide-sm" href="#mission">Mission</a>
+        <a href="https://github.com/konnekde">GitHub</a>
+        <a class="hide-sm" href="https://konnek.de">konnek.de</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="section-label">Open source</span>
       <h1>Connecting the tools your business already uses.</h1>
-      <p class="lead">
-        konnek makes integrations simple for small and medium-sized businesses in Europe:
-        set up in a few steps, hosted GDPR-compliant in Germany, with AI built in from day one.
+      <p class="hero-subtitle">
+        <span class="brand">konnek</span> makes integrations simple for small and medium-sized businesses in
+        Europe: set up in a few steps, hosted GDPR-compliant in Germany, with AI built in from day one.
       </p>
-    </header>
+      <div class="hero-actions">
+        <a class="btn btn-coral" href="https://github.com/konnekde">Explore on GitHub</a>
+        <a class="btn btn-on-dark" href="https://konnek.de">Visit konnek.de</a>
+      </div>
+    </div>
+  </header>
 
-    <section>
-      <h2>Why this open source space exists</h2>
-      <p>
-        Building konnek, we keep creating things that are useful beyond our own product:
-        connectors, small tools, and skills for working with AI agents.
-        We want to share them openly instead of keeping them in a drawer.
-      </p>
-      <p>
-        This is where they live. Everything here is meant to help you connect with konnek
-        &ndash; or simply to solve a problem you happen to share with us.
-      </p>
-    </section>
-
-    <section>
-      <h2>What you will find here</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Integrations</h3>
-          <p>Connectors and examples for linking your software &ndash; especially European tools &ndash; with konnek.</p>
-        </div>
-        <div class="card">
-          <h3>Capabilities</h3>
-          <p>Building blocks and interfaces that let other systems talk to konnek.</p>
-        </div>
-        <div class="card">
-          <h3>Tools</h3>
-          <p>Developer utilities we built for ourselves and found worth sharing.</p>
-        </div>
-        <div class="card">
-          <h3>Skills</h3>
-          <p>Reusable instructions and workflows for AI coding agents, refined during our own work.</p>
+  <main>
+    <section class="section" id="mission">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Mission</span>
+          <h2>Why this open source space exists</h2>
+          <p class="section-text">
+            Building <span class="brand">konnek</span>, we keep creating things that are useful beyond our own
+            product: connectors, small tools, and skills for working with AI agents. We would rather share them
+            openly than keep them in a drawer.
+          </p>
+          <p class="section-text">
+            This is where they live. Everything here is meant to help you connect with
+            <span class="brand">konnek</span> &ndash; or simply to solve a problem you happen to share with us.
+          </p>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>What we stand for</h2>
-      <ul class="values">
-        <li><strong>Simple.</strong> Small, clear solutions that &ldquo;just run&rdquo; &ndash; no integration project needed.</li>
-        <li><strong>European.</strong> Data stays in Germany, and we actively connect European software alternatives.</li>
-        <li><strong>AI-native.</strong> Describe an integration in plain language and let konnek build it.</li>
-        <li><strong>Independent.</strong> Bootstrapped, without investor money, and growing towards shared ownership.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Join the journey</h2>
-      <div class="note">
-        <p>
-          This space is just getting started &ndash; the first repositories will appear here soon.
-          Follow along on GitHub, or learn more about the product on our website.
-        </p>
-        <a class="cta" href="https://github.com/konnekde">github.com/konnekde</a>
-        &nbsp;
-        <a href="https://konnek.de">konnek.de</a>
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">What you will find here</span>
+          <h2>Shared along the way</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="card-num">01</span>
+            <h3>Integrations</h3>
+            <p>Connectors and examples for linking your software &ndash; especially European tools &ndash; with konnek.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">02</span>
+            <h3>Capabilities</h3>
+            <p>Building blocks and interfaces that let other systems talk to konnek.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">03</span>
+            <h3>Tools</h3>
+            <p>Developer utilities we built for ourselves and found worth sharing.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">04</span>
+            <h3>Skills</h3>
+            <p>Reusable instructions and workflows for AI coding agents, refined during our own work.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <footer>
-      konnek &middot; <a href="https://konnek.de">konnek.de</a> &middot; <a href="mailto:info@konnek.de">info@konnek.de</a>
-    </footer>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">What we stand for</span>
+          <h2>Simple, European, independent</h2>
+        </div>
+        <ul class="values">
+          <li><strong>Simple</strong><span>Small, clear solutions that &ldquo;just run&rdquo; &ndash; no integration project needed.</span></li>
+          <li><strong>European</strong><span>Data stays in Germany, and we actively connect European software alternatives.</span></li>
+          <li><strong>AI-native</strong><span>Describe an integration in plain language and let konnek build it.</span></li>
+          <li><strong>Independent</strong><span>Bootstrapped, without investor money, and growing towards shared ownership.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="dot-band">
+      <div class="container">
+        <div class="dot-band-card">
+          <span class="section-label">Join the journey</span>
+          <h2>The first repositories are on their way</h2>
+          <p>This space is just getting started. Follow along on GitHub, or learn more about the product on our website.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/konnekde">Follow on GitHub</a>
+            <a class="btn btn-secondary" href="https://konnek.de">konnek.de</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section credits" id="credits" aria-labelledby="credits-title">
+      <div class="container">
+        <span class="section-label">Credits</span>
+        <h2 id="credits-title">Built on open source</h2>
+        <p class="section-text">This page is set in two typefaces released under the SIL Open Font License 1.1, self-hosted from this repository.</p>
+        <table class="credits-table">
+          <thead><tr><th scope="col">Font</th><th scope="col">Used for</th><th scope="col">Authors</th><th scope="col">License</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="font-sg">Space Grotesk</td>
+              <td>Headings and wordmark</td>
+              <td><a href="https://github.com/floriankarsten/space-grotesk">The Space Grotesk Project Authors</a></td>
+              <td><a href="fonts/OFL-SpaceGrotesk.txt">OFL 1.1</a></td>
+            </tr>
+            <tr>
+              <td class="font-outfit">Outfit</td>
+              <td>Body text</td>
+              <td><a href="https://github.com/Outfitio/Outfit-Fonts">The Outfit Project Authors</a></td>
+              <td><a href="fonts/OFL-Outfit.txt">OFL 1.1</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://konnek.de">konnek.de</a>
+        <a href="https://github.com/konnekde">GitHub</a>
+        <a href="mailto:info@konnek.de">info@konnek.de</a>
+      </div>
+      <span class="footer-copy">konnek open source</span>
+    </div>
+  </footer>
 </body>
 </html>
