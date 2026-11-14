@@ -187,6 +187,9 @@
     .footer-links a { font-size: 0.875rem; color: var(--color-on-dark-muted); }
     .footer-links a:hover { color: #fff; }
     .footer-copy { font-size: 0.8rem; color: rgba(255, 255, 255, 0.65); }
+    /* Same treatment as konnek-website's .footer-version */
+    .footer-version { font-variant-numeric: tabular-nums; color: inherit; opacity: 0.5; margin-left: 0.35rem; font-family: ui-monospace, monospace; }
+    .footer-version:hover { opacity: 1; color: #fff; }
   </style>
 </head>
 <body>
@@ -333,8 +336,26 @@
         <a href="https://github.com/konnekde">GitHub</a>
         <a href="mailto:info@konnek.de">info@konnek.de</a>
       </div>
-      <span class="footer-copy">konnek open source</span>
+      <span class="footer-copy">konnek open source <a id="version" class="footer-version" hidden></a></span>
     </div>
   </footer>
+  <script>
+    // Show the commit of the current version (latest commit on main, which GitHub Pages deploys).
+    // No build step exists to bake it in, so ask the GitHub API; on any failure the link stays hidden.
+    (async () => {
+      try {
+        const res = await fetch('https://api.github.com/repos/konnekde/konnekde.github.io/commits/main', {
+          headers: { Accept: 'application/vnd.github+json' },
+        });
+        if (!res.ok) return;
+        const { sha, html_url: url, commit } = await res.json();
+        const el = document.getElementById('version');
+        el.textContent = sha.slice(0, 7);
+        el.href = url;
+        el.title = `Commit ${sha} (${commit.committer.date.slice(0, 10)})`;
+        el.hidden = false;
+      } catch (_) { /* offline or rate-limited: no version shown */ }
+    })();
+  </script>
 </body>
 </html>
