@@ -19,7 +19,7 @@ While building konnek we create things that are useful beyond our own product. W
 
 ## Development
 
-The site is static HTML: `index.html`, `impressum.html` (legal notice, same as konnek.de) and the
+The site is static HTML: `index.html`, `impressum_imprint.html` (legal notice, same as konnek.de) and the
 shared `style.css` (no build step; `.nojekyll` disables Jekyll).
 Open it in a browser to preview; every push to `main` publishes it.
 

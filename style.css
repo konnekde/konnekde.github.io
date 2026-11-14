@@ -180,7 +180,7 @@ p { max-width: 65ch; text-wrap: pretty; }
 .footer-version { font-variant-numeric: tabular-nums; color: inherit; opacity: 0.5; margin-left: 0.35rem; font-family: ui-monospace, monospace; }
 .footer-version:hover { opacity: 1; color: #fff; }
 
-/* Legal pages (impressum.html) */
+/* Legal pages (impressum_imprint.html) */
 .legal { padding: var(--space-2xl) 0; }
 .legal .container { max-width: 48rem; }
 .legal h1 { margin-bottom: var(--space-lg); }
